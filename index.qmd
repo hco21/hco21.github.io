@@ -1,41 +1,39 @@
 ---
-title: "YOUR NAME" 
+title: "Hannah Olejniczak" 
 about:
   template: trestles  # jolla  trestles  solana  marquee  broadside
-  image: img/profile.png
+  #img/profilepic.png
+  image: img/profilepic.png
   image-width: 16em
   image-shape: round # rectangle  round  rounded
   
   links:
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
-    - icon: instagram
-      text: Instagram
-      href: https://instagram.com
+      href: https://linkedin.com/in/hannah-olejniczak-26b11a297
     - icon: github
       text: GitHub
-      href: https://github.com
+      href: https://github.com/hco21
     - icon: file-earmark-pdf
       text: Resumé
-      href: https://GITHUB_USERNAME.github.io/resume-example.pdf
+      href: file:///C:/Users/holej/Documents/hco21.github.io/resume3.pdf
     - icon: mailbox
       text: Email
-      href: mailto:YOUR_EMAIL@geneseo.edu
+      href: mailto:hco2@geneseo.edu
 
 ---
 
 
-Finley Malloc majors in Data Analytics at SUNY Geneseo. When not working on data analytics, Finley enjoys spending time unicycling and playing with her pet iguana.
+Hannah Olejniczak majors in Applied Mathematics with minors in Data Analytics and Business Studies at SUNY Geneseo. When not working on school work, Hannah enjoys spending time playing softball and hanging out with her friends. 
 
 ## Education
 
 State University of New York at Geneseo | Geneseo, NY <br>
-B.S. in Data Analytics | Aug 2022 - May 2026 <br>
-Minor in Business Administration 
+B.S. in Applied Mathematics | Aug 2021 - May 2025 <br>
+Minors in Data Analytics & Business Administration 
 
 ## Experience
 
-Starbucks Analytics | Data Analyst Intern | May 2024 - Aug 2024
+
 
 

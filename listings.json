@@ -2,10 +2,21 @@
   {
     "listing": "/blog-listing.html",
     "items": [
+      "/posts/pythonBasicsBlog/about.html",
+      "/posts/pythonBasicsBlog/pythonBasics.html",
+      "/posts/pythonBasicsBlog/posts/post-with-code/index.html",
+      "/posts/pythonBasicsBlog/posts/welcome/index.html",
       "/posts/beer-markets/beer-markets.html",
       "/posts/starwars/starwars_df.html",
       "/posts/post-with-code/index.html",
       "/posts/welcome/index.html"
+    ]
+  },
+  {
+    "listing": "/posts/pythonBasicsBlog/index.html",
+    "items": [
+      "/posts/pythonBasicsBlog/posts/post-with-code/index.html",
+      "/posts/pythonBasicsBlog/posts/welcome/index.html"
     ]
   }
 ]

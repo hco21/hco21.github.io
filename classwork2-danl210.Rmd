@@ -1,0 +1,27 @@
+---
+title: "Classwork 2"
+output: html_document
+date: "2024-01-30"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Heading 1
+ - item 1
+ - item 2
+ - item 3
+ 
+ 1. item 1
+ 2. item 2
+ 
+ ![Geneseo Logo][DANL 210](https://bcdanl.github.io/210)
+![Geneseo Logo](https://bcdanl.github.io/img/geneseo-logo.gif)
+ ```python 
+ #python code block
+ import numpy as np
+ ```
+ > Be yourself. Everyone else is already taken. - Oscar Wilde
+
+:cow2:

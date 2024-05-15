@@ -1,0 +1,29 @@
+---
+title: "Python Basics"
+author: "Hannah Olejniczak"
+date: "2024-2-20"
+categories: [code]
+image: "image.jpg"
+---
+
+# Values, Variables and Types
+
+A variable is a name that refers to a value.
+
+In python, we use = to assign a value to a variable
+
+Variables are names, not places.
+
+# Operators
+
+\+ for addition
+
+\- for subtraction
+
+\* for multiplication
+
+\*\* for powers
+
+/ for division
+
+// for integer division
