@@ -64,7 +64,7 @@ import numpy as np
 My python code for collecting this data has been turned in through Bright Space. Here I am importing my csv files to run analysis on the data. 
 
 ```{python}
-esg_cont_data_path = 'C:/Users/holej/Documents/hco21.github.io/data/esg_ratings_and_cont_level - Copy.csv'
+esg_cont_data_path = 'C:/Users/holej/Documents/hco21.github.io/data/esg_ratings_and_cont_level.csv'
 balance_sheet_data_path = 'C:/Users/holej/Documents/hco21.github.io/data/balance_sheet_final.csv'
 historical_data_path = 'C:/Users/holej/Documents/hco21.github.io/data/history_data_final.csv'
 income_statements_data_path = 'C:/Users/holej/Documents/hco21.github.io/data/income_statements_final.csv'
