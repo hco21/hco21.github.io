@@ -8,7 +8,7 @@ website:
     pinned: true
     left:
       - text: Project
-        href: project.qmd
+        href: project.ipynb
       - text: Blog
         href: blog-listing.qmd
       - text: Homework

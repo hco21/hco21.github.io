@@ -95,6 +95,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -202,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
 <p>Looking at a companies ESG when making investment decisions is very beneficial to the investors because having a good record on ESG corresponds to a reduced investment risk. NYU Stern Center for Sustainable Business did an analysis of over 1,000 studies published since 2015 and showed that a strong management of ESG is linked to improved Return on Equity, Return on Assets, stock price and operational efficiency.</p>
 <p>The specific issue that this project is going to address is the skepticism of some investors towards ESG integration. The analysis shown will provide evidence of the financial benefits of incorporating ESG metrics into investment strategies.</p>
-<div class="cell">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -212,11 +215,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data-collection" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Data Collection</h1>
 <p>My python code for collecting this data has been turned in through Bright Space. Here I am importing my csv files to run analysis on the data.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>esg_cont_data_path <span class="op">=</span> <span class="st">'C:/Users/holej/Documents/hco21.github.io/data/esg_ratings_and_cont_level - Copy.csv'</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>balance_sheet_data_path <span class="op">=</span> <span class="st">'C:/Users/holej/Documents/hco21.github.io/data/balance_sheet_final.csv'</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>historical_data_path <span class="op">=</span> <span class="st">'C:/Users/holej/Documents/hco21.github.io/data/history_data_final.csv'</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>income_statements_data_path <span class="op">=</span> <span class="st">'C:/Users/holej/Documents/hco21.github.io/data/income_statements_final.csv'</span></span>
+<div class="cell" data-outputid="f8daf9ab-58e6-43a5-a9df-c696fad3906b" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>esg_cont_data_path <span class="op">=</span> <span class="st">'https://hco21.github.io/data/esg_ratings_and_cont_level.csv'</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>balance_sheet_data_path <span class="op">=</span> <span class="st">'https://hco21.github.io/data/balance_sheet_final.csv'</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>historical_data_path <span class="op">=</span> <span class="st">'https://hco21.github.io/data/history_data_final.csv'</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>income_statements_data_path <span class="op">=</span> <span class="st">'https://hco21.github.io/data/income_statements_final.csv'</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>esg_cont_data <span class="op">=</span> pd.read_csv(esg_cont_data_path)</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>balance_sheet_data <span class="op">=</span> pd.read_csv(balance_sheet_data_path)</span>
@@ -228,137 +231,2200 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="descriptive-statistics" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Descriptive Statistics</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#print(esg_cont_data.describe())</span></span>
+<div class="cell" data-outputid="29298613-c8bb-49d0-abab-27ed9cda4dda" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>esg_cont_data.describe()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.figure(figsize = (8,6))</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#sns.histplot(data = esg_cont_data, x = 'total', bins = 20, kde = True)</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.title('Distribution of Total ESG Scores')</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.xlabel('Total ESG Score')</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.ylabel('Frequency')</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.show()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize <span class="op">=</span> (<span class="dv">8</span>,<span class="dv">6</span>))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>sns.histplot(data <span class="op">=</span> esg_cont_data, x <span class="op">=</span> <span class="st">'total'</span>, bins <span class="op">=</span> <span class="dv">20</span>, kde <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribution of Total ESG Scores'</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Total ESG Score'</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Frequency'</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="project_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
+</div>
 </div>
 <p>This graph shows that the distribution of Total ESG Scores are normally distributed across all companies.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#historical_stats = historical_data['open'].describe()</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#print(historical_stats)</span></span>
+<div class="cell" data-outputid="54eb359c-3d44-4791-9212-3771b1d5e98d" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>historical_stats <span class="op">=</span> historical_data[<span class="st">'Open'</span>].describe()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(historical_stats)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create distribution plot for 'open' column in historical data</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.figure(figsize=(8, 6))</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#sns.histplot(data=historical_data, x='Open', bins=20, kde=True)</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.title('Distribution of Open Prices')</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.xlabel('Open Price')</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.ylabel('Frequency')</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.show()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>historical_data, x<span class="op">=</span><span class="st">'Open'</span>, bins<span class="op">=</span><span class="dv">20</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribution of Open Prices'</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Open Price'</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Frequency'</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>count    197796.000000
+mean        149.309518
+std         329.718700
+min           1.030000
+25%          39.985984
+50%          82.056901
+75%         154.942161
+max        8022.919922
+Name: Open, dtype: float64</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="project_files/figure-html/cell-5-output-2.png" class="img-fluid"></p>
+</div>
 </div>
 <p>It can be seen here that most of the companies have the same open price every day.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#esg_corr = esg_cont_data.corr()</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.figure(figsize=(8, 6))</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#sns.heatmap(esg_corr, annot=True, cmap='coolwarm', fmt=".2f", linewidths = .5)</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.title('Correlation Heatmap for ESG Data')</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.show()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-outputid="a14dfd11-0bb0-4cc3-e115-1669c9a1352b" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#esg_corr = esg_cont_data.corr()</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.figure(figsize=(8, 6))</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#sns.heatmap(esg_corr, annot=True, cmap='coolwarm', fmt=".2f", linewidths = .5)</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.title('Correlation Heatmap for ESG Data')</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.show()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>ValueError: could not convert string to float: 'A'</code></pre>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#balance_sheet_corr = balance_sheet_data.corr()</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.figure(figsize=(10, 8))</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#sns.heatmap(balance_sheet_corr, annot=True, cmap='coolwarm', fmt=".2f")</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.title('Correlation Heatmap for Balance Sheet Data')</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.show()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#balance_sheet_corr = balance_sheet_data.corr()</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.figure(figsize=(10, 8))</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#sns.heatmap(balance_sheet_corr, annot=True, cmap='coolwarm', fmt=".2f")</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.title('Correlation Heatmap for Balance Sheet Data')</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.show()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As seen above, I wrote code to generate heat maps however they were only showing up blank.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># retrieves a list of the companies in the top 10% total ESG scores</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#ninety_percentile = esg_cont_data['total'].quantile(.90)</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#top_ten_per_esg = esg_cont_data[esg_cont_data['total'] &gt; ninety_percentile]</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#top_ten = pd.DataFrame(top_ten_per_esg)</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.figure(figsize = (8,6))</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#sns.histplot(data = top_ten, x = 'total', bins = 20, kde = True)</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.title('Distribution of Top 10% ESG Scores')</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.xlabel('Top 10% ESG Score')</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.ylabel('Frequency')</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.show()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-outputid="f17d66a4-b8e8-4000-af7b-24066175afcd" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># retrieves a list of the companies in the top 10% total ESG scores</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ninety_percentile <span class="op">=</span> esg_cont_data[<span class="st">'total'</span>].quantile(<span class="fl">.90</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>top_ten_per_esg <span class="op">=</span> esg_cont_data[esg_cont_data[<span class="st">'total'</span>] <span class="op">&gt;</span> ninety_percentile]</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>top_ten <span class="op">=</span> pd.DataFrame(top_ten_per_esg)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize <span class="op">=</span> (<span class="dv">8</span>,<span class="dv">6</span>))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>sns.histplot(data <span class="op">=</span> top_ten, x <span class="op">=</span> <span class="st">'total'</span>, bins <span class="op">=</span> <span class="dv">20</span>, kde <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribution of Top 10</span><span class="sc">% E</span><span class="st">SG Scores'</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Top 10</span><span class="sc">% E</span><span class="st">SG Score'</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Frequency'</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="project_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
+</div>
 </div>
 <p>This graph shows the portion of the companies that are in the top 10% of ESG scores.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># retrieves a list of the companies in the lowest 10% total ESG scores</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#ten_percentile = esg_cont_data['total'].quantile(.10)</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#bot_ten_per_esg = esg_cont_data[esg_cont_data['total'] &lt; ten_percentile]</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#bot_ten = pd.DataFrame(bot_ten_per_esg)</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.figure(figsize = (7,6))</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#sns.histplot(data = bot_ten, x = 'total', bins = 20, kde = True)</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.title('Distribution of Bottom 10% ESG Scores')</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.xlabel('Bottom 10% ESG Score')</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.ylabel('Frequency')</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.show()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-outputid="2dd2c906-f712-4c4a-c17a-67d3e4eb84f5" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#retrieves a list of the companies in the lowest 10% total ESG scores</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ten_percentile <span class="op">=</span> esg_cont_data[<span class="st">'total'</span>].quantile(<span class="fl">.10</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>bot_ten_per_esg <span class="op">=</span> esg_cont_data[esg_cont_data[<span class="st">'total'</span>] <span class="op">&lt;</span> ten_percentile]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>bot_ten <span class="op">=</span> pd.DataFrame(bot_ten_per_esg)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize <span class="op">=</span> (<span class="dv">7</span>,<span class="dv">6</span>))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>sns.histplot(data <span class="op">=</span> bot_ten, x <span class="op">=</span> <span class="st">'total'</span>, bins <span class="op">=</span> <span class="dv">20</span>, kde <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribution of Bottom 10</span><span class="sc">% E</span><span class="st">SG Scores'</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Bottom 10</span><span class="sc">% E</span><span class="st">SG Score'</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Frequency'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>Text(0, 0.5, 'Frequency')</code></pre>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scatter plot for environmental (env) and social (soc) components</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.figure(figsize=(10, 6))</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.scatter(top_ten['env'], top_ten['soc'], color='blue', label='Top 10%')</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.scatter(bot_ten['env'], bot_ten['soc'], color='red', label='Bottom 10%')</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.xlabel('Environmental Score')</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.ylabel('Social Score')</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.title('Scatter Plot of Environmental vs. Social Scores')</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.legend()</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.grid(True)</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.show()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="project_files/figure-html/cell-9-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-outputid="fcc6200d-c73f-40de-a4a2-854c25a6ad89" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scatter plot for environmental (env) and social (soc) components</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(top_ten[<span class="st">'env'</span>], top_ten[<span class="st">'soc'</span>], color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Top 10%'</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>plt.scatter(bot_ten[<span class="st">'env'</span>], bot_ten[<span class="st">'soc'</span>], color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Bottom 10%'</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Environmental Score'</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Social Score'</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Scatter Plot of Environmental vs. Social Scores'</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="project_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
+</div>
 </div>
 <p>Here it can be seen that the companies in the top 10% have both a higher Social and Environmental score than those companies in the bottom 10%.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creating new data frames of balance sheet data with only the top 10% and bottom</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 10% percent companies when looking at esg</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#top_ten_bs = pd.merge(top_ten, balance_sheet_data, on ='Symbol')</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#bottom_ten_bs = pd.merge(bot_ten, balance_sheet_data, on = 'Symbol')</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># creating new data frames of income statements data with only the top 10% and bottom</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 10% percent companies when looking at esg</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#top_ten_is = pd.merge(top_ten, income_statements_data, on ='Symbol')</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#bottom_ten_is = pd.merge(bot_ten, income_statements_data, on ='Symbol')</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># creating new data frames of historical data with only the top 10% and bottom</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 10% percent companies when looking at esg</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#top_ten_hist = pd.merge(top_ten, historical_data, on ='Symbol')</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#bottom_ten_hist = pd.merge(bot_ten, historical_data, on ='Symbol')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-outputid="9c18211e-1525-433c-8ea7-678ae3f4ee82" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>top_ten.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>Index(['Symbol', 'total', 'env', 'soc', 'gov', 'con'], dtype='object')</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="6d5cc74d-6119-4b6f-a324-d7403cae7a8d" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>balance_sheet_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+
+  <div id="df-576251c4-c82a-4be8-8c20-f8dbdae4927f" class="colab-df-container">
+    <div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">Ordinary Shares Number</td>
+<td data-quarto-table-cell-role="th">Share Issued</td>
+<td data-quarto-table-cell-role="th">Net Debt</td>
+<td data-quarto-table-cell-role="th">Total Debt</td>
+<td data-quarto-table-cell-role="th">Tangible Book Value</td>
+<td data-quarto-table-cell-role="th">Invested Capital</td>
+<td data-quarto-table-cell-role="th">Working Capital</td>
+<td data-quarto-table-cell-role="th">Net Tangible Assets</td>
+<td data-quarto-table-cell-role="th">Capital Lease Obligations</td>
+<td data-quarto-table-cell-role="th">Common Stock Equity</td>
+<td data-quarto-table-cell-role="th">Total Capitalization</td>
+<td data-quarto-table-cell-role="th">Total Equity Gross Minority Interest</td>
+<td data-quarto-table-cell-role="th">Minority Interest</td>
+<td data-quarto-table-cell-role="th">Stockholders Equity</td>
+<td data-quarto-table-cell-role="th">Gains Losses Not Affecting Retained Earnings</td>
+<td data-quarto-table-cell-role="th">Other Equity Adjustments</td>
+<td data-quarto-table-cell-role="th">Retained Earnings</td>
+<td data-quarto-table-cell-role="th">Additional Paid In Capital</td>
+<td data-quarto-table-cell-role="th">Capital Stock</td>
+<td data-quarto-table-cell-role="th">Common Stock</td>
+<td data-quarto-table-cell-role="th">Total Liabilities Net Minority Interest</td>
+<td data-quarto-table-cell-role="th">Total Non Current Liabilities Net Minority Interest</td>
+<td data-quarto-table-cell-role="th">Other Non Current Liabilities</td>
+<td data-quarto-table-cell-role="th">Derivative Product Liabilities</td>
+<td data-quarto-table-cell-role="th">Employee Benefits</td>
+<td data-quarto-table-cell-role="th">Non Current Pension And Other Postretirement Benefit Plans</td>
+<td data-quarto-table-cell-role="th">Tradeand Other Payables Non Current</td>
+<td data-quarto-table-cell-role="th">Non Current Deferred Liabilities</td>
+<td data-quarto-table-cell-role="th">Non Current Deferred Revenue</td>
+<td data-quarto-table-cell-role="th">Long Term Debt And Capital Lease Obligation</td>
+<td data-quarto-table-cell-role="th">Long Term Capital Lease Obligation</td>
+<td data-quarto-table-cell-role="th">Long Term Debt</td>
+<td data-quarto-table-cell-role="th">Long Term Provisions</td>
+<td data-quarto-table-cell-role="th">Current Liabilities</td>
+<td data-quarto-table-cell-role="th">Other Current Liabilities</td>
+<td data-quarto-table-cell-role="th">Current Debt And Capital Lease Obligation</td>
+<td data-quarto-table-cell-role="th">Current Debt</td>
+<td data-quarto-table-cell-role="th">Other Current Borrowings</td>
+<td data-quarto-table-cell-role="th">Pensionand Other Post Retirement Benefit Plans Current</td>
+<td data-quarto-table-cell-role="th">Payables And Accrued Expenses</td>
+<td data-quarto-table-cell-role="th">Payables</td>
+<td data-quarto-table-cell-role="th">Total Tax Payable</td>
+<td data-quarto-table-cell-role="th">Accounts Payable</td>
+<td data-quarto-table-cell-role="th">Total Assets</td>
+<td data-quarto-table-cell-role="th">Total Non Current Assets</td>
+<td data-quarto-table-cell-role="th">Other Non Current Assets</td>
+<td data-quarto-table-cell-role="th">Defined Pension Benefit</td>
+<td data-quarto-table-cell-role="th">Non Current Prepaid Assets</td>
+<td data-quarto-table-cell-role="th">Non Current Deferred Assets</td>
+<td data-quarto-table-cell-role="th">Non Current Deferred Taxes Assets</td>
+<td data-quarto-table-cell-role="th">Non Current Accounts Receivable</td>
+<td data-quarto-table-cell-role="th">Financial Assets</td>
+<td data-quarto-table-cell-role="th">Investments And Advances</td>
+<td data-quarto-table-cell-role="th">Goodwill And Other Intangible Assets</td>
+<td data-quarto-table-cell-role="th">Other Intangible Assets</td>
+<td data-quarto-table-cell-role="th">Goodwill</td>
+<td data-quarto-table-cell-role="th">Net PPE</td>
+<td data-quarto-table-cell-role="th">Accumulated Depreciation</td>
+<td data-quarto-table-cell-role="th">Gross PPE</td>
+<td data-quarto-table-cell-role="th">Construction In Progress</td>
+<td data-quarto-table-cell-role="th">Other Properties</td>
+<td data-quarto-table-cell-role="th">Machinery Furniture Equipment</td>
+<td data-quarto-table-cell-role="th">Land And Improvements</td>
+<td data-quarto-table-cell-role="th">Current Assets</td>
+<td data-quarto-table-cell-role="th">Other Current Assets</td>
+<td data-quarto-table-cell-role="th">Hedging Assets Current</td>
+<td data-quarto-table-cell-role="th">Inventory</td>
+<td data-quarto-table-cell-role="th">Other Inventories</td>
+<td data-quarto-table-cell-role="th">Finished Goods</td>
+<td data-quarto-table-cell-role="th">Work In Process</td>
+<td data-quarto-table-cell-role="th">Raw Materials</td>
+<td data-quarto-table-cell-role="th">Receivables</td>
+<td data-quarto-table-cell-role="th">Other Receivables</td>
+<td data-quarto-table-cell-role="th">Accounts Receivable</td>
+<td data-quarto-table-cell-role="th">Cash Cash Equivalents And Short Term Investments</td>
+<td data-quarto-table-cell-role="th">Cash And Cash Equivalents</td>
+<td data-quarto-table-cell-role="th">Symbol</td>
+<td data-quarto-table-cell-role="th">Company Name</td>
+<td data-quarto-table-cell-role="th">Treasury Shares Number</td>
+<td data-quarto-table-cell-role="th">Current Deferred Liabilities</td>
+<td data-quarto-table-cell-role="th">Current Deferred Revenue</td>
+<td data-quarto-table-cell-role="th">Current Capital Lease Obligation</td>
+<td data-quarto-table-cell-role="th">Current Accrued Expenses</td>
+<td data-quarto-table-cell-role="th">Restricted Cash</td>
+<td data-quarto-table-cell-role="th">Other Short Term Investments</td>
+<td data-quarto-table-cell-role="th">Cash Financial</td>
+<td data-quarto-table-cell-role="th">Commercial Paper</td>
+<td data-quarto-table-cell-role="th">Investmentin Financial Assets</td>
+<td data-quarto-table-cell-role="th">Available For Sale Securities</td>
+<td data-quarto-table-cell-role="th">Leases</td>
+<td data-quarto-table-cell-role="th">Properties</td>
+<td data-quarto-table-cell-role="th">Cash Equivalents</td>
+<td data-quarto-table-cell-role="th">Treasury Stock</td>
+<td data-quarto-table-cell-role="th">Non Current Deferred Taxes Liabilities</td>
+<td data-quarto-table-cell-role="th">Dividends Payable</td>
+<td data-quarto-table-cell-role="th">Buildings And Improvements</td>
+<td data-quarto-table-cell-role="th">Preferred Stock</td>
+<td data-quarto-table-cell-role="th">Other Payable</td>
+<td data-quarto-table-cell-role="th">Income Tax Payable</td>
+<td data-quarto-table-cell-role="th">Other Investments</td>
+<td data-quarto-table-cell-role="th">Allowance For Doubtful Accounts Receivable</td>
+<td data-quarto-table-cell-role="th">Gross Accounts Receivable</td>
+<td data-quarto-table-cell-role="th">Preferred Shares Number</td>
+<td data-quarto-table-cell-role="th">Preferred Stock Equity</td>
+<td data-quarto-table-cell-role="th">Long Term Equity Investment</td>
+<td data-quarto-table-cell-role="th">Investments In Other Ventures Under Equity Method</td>
+<td data-quarto-table-cell-role="th">Prepaid Assets</td>
+<td data-quarto-table-cell-role="th">Liabilities Heldfor Sale Non Current</td>
+<td data-quarto-table-cell-role="th">Investmentsin Joint Venturesat Cost</td>
+<td data-quarto-table-cell-role="th">Assets Held For Sale Current</td>
+<td data-quarto-table-cell-role="th">Taxes Receivable</td>
+<td data-quarto-table-cell-role="th">Other Equity Interest</td>
+<td data-quarto-table-cell-role="th">Current Provisions</td>
+<td data-quarto-table-cell-role="th">Interest Payable</td>
+<td data-quarto-table-cell-role="th">Non Current Note Receivables</td>
+<td data-quarto-table-cell-role="th">Financial Assets Designatedas Fair Value Through Profitor Loss Total</td>
+<td data-quarto-table-cell-role="th">Investmentsin Associatesat Cost</td>
+<td data-quarto-table-cell-role="th">Preferred Securities Outside Stock Equity</td>
+<td data-quarto-table-cell-role="th">Line Of Credit</td>
+<td data-quarto-table-cell-role="th">Current Notes Payable</td>
+<td data-quarto-table-cell-role="th">Receivables Adjustments Allowances</td>
+<td data-quarto-table-cell-role="th">Notes Receivable</td>
+<td data-quarto-table-cell-role="th">Loans Receivable</td>
+<td data-quarto-table-cell-role="th">Foreign Currency Translation Adjustments</td>
+<td data-quarto-table-cell-role="th">Minimum Pension Liabilities</td>
+<td data-quarto-table-cell-role="th">Unrealized Gain Loss</td>
+<td data-quarto-table-cell-role="th">Held To Maturity Securities</td>
+<td data-quarto-table-cell-role="th">Investment Properties</td>
+<td data-quarto-table-cell-role="th">Duefrom Related Parties Current</td>
+<td data-quarto-table-cell-role="th">Current Deferred Assets</td>
+<td data-quarto-table-cell-role="th">Dueto Related Parties Current</td>
+<td data-quarto-table-cell-role="th">Inventories Adjustments Allowances</td>
+<td data-quarto-table-cell-role="th">Non Current Accrued Expenses</td>
+<td data-quarto-table-cell-role="th">Accrued Interest Receivable</td>
+<td data-quarto-table-cell-role="th">Trading Securities</td>
+<td data-quarto-table-cell-role="th">Investmentsin Subsidiariesat Cost</td>
+<td data-quarto-table-cell-role="th">Total Partnership Capital</td>
+<td data-quarto-table-cell-role="th">Limited Partnership Capital</td>
+<td data-quarto-table-cell-role="th">Dueto Related Parties Non Current</td>
+<td data-quarto-table-cell-role="th">Duefrom Related Parties Non Current</td>
+<td data-quarto-table-cell-role="th">Fixed Assets Revaluation Reserve</td>
+<td data-quarto-table-cell-role="th">Current Deferred Taxes Liabilities</td>
+<td data-quarto-table-cell-role="th">Current Deferred Taxes Assets</td>
+<td>General Partnership Capital</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2024-03-31</td>
+<td data-quarto-table-cell-role="th">178472464.0</td>
+<td data-quarto-table-cell-role="th">178472464.0</td>
+<td data-quarto-table-cell-role="th">1190000000.0</td>
+<td data-quarto-table-cell-role="th">2548000000.0</td>
+<td data-quarto-table-cell-role="th">3812000000.0</td>
+<td data-quarto-table-cell-role="th">6542000000.0</td>
+<td data-quarto-table-cell-role="th">1840000000.0</td>
+<td data-quarto-table-cell-role="th">3812000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">3994000000.0</td>
+<td data-quarto-table-cell-role="th">6463000000.0</td>
+<td data-quarto-table-cell-role="th">5534000000.0</td>
+<td data-quarto-table-cell-role="th">1540000000.0</td>
+<td data-quarto-table-cell-role="th">3994000000.0</td>
+<td data-quarto-table-cell-role="th">-3628000000.0</td>
+<td data-quarto-table-cell-role="th">-3628000000.0</td>
+<td data-quarto-table-cell-role="th">-1564000000.0</td>
+<td data-quarto-table-cell-role="th">9184000000.0</td>
+<td data-quarto-table-cell-role="th">2000000.0</td>
+<td data-quarto-table-cell-role="th">2000000.0</td>
+<td data-quarto-table-cell-role="th">8794000000.0</td>
+<td data-quarto-table-cell-role="th">5753000000.0</td>
+<td data-quarto-table-cell-role="th">606000000.0</td>
+<td data-quarto-table-cell-role="th">925000000.0</td>
+<td data-quarto-table-cell-role="th">704000000.0</td>
+<td data-quarto-table-cell-role="th">704000000.0</td>
+<td data-quarto-table-cell-role="th">134000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">2469000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">2469000000.0</td>
+<td data-quarto-table-cell-role="th">915000000.0</td>
+<td data-quarto-table-cell-role="th">3041000000.0</td>
+<td data-quarto-table-cell-role="th">951000000.0</td>
+<td data-quarto-table-cell-role="th">79000000.0</td>
+<td data-quarto-table-cell-role="th">79000000.0</td>
+<td data-quarto-table-cell-role="th">79000000.0</td>
+<td data-quarto-table-cell-role="th">331000000.0</td>
+<td data-quarto-table-cell-role="th">1680000000.0</td>
+<td data-quarto-table-cell-role="th">1680000000.0</td>
+<td data-quarto-table-cell-role="th">94000000.0</td>
+<td data-quarto-table-cell-role="th">1586000000.0</td>
+<td data-quarto-table-cell-role="th">14328000000.0</td>
+<td data-quarto-table-cell-role="th">9447000000.0</td>
+<td data-quarto-table-cell-role="th">177000000.0</td>
+<td data-quarto-table-cell-role="th">127000000.0</td>
+<td data-quarto-table-cell-role="th">616000000.0</td>
+<td data-quarto-table-cell-role="th">474000000.0</td>
+<td data-quarto-table-cell-role="th">295000000.0</td>
+<td data-quarto-table-cell-role="th">324000000.0</td>
+<td data-quarto-table-cell-role="th">1000000.0</td>
+<td data-quarto-table-cell-role="th">969000000.0</td>
+<td data-quarto-table-cell-role="th">182000000.0</td>
+<td data-quarto-table-cell-role="th">36000000.0</td>
+<td data-quarto-table-cell-role="th">146000000.0</td>
+<td data-quarto-table-cell-role="th">6577000000.0</td>
+<td data-quarto-table-cell-role="th">-13382000000.0</td>
+<td data-quarto-table-cell-role="th">19959000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">4881000000.0</td>
+<td data-quarto-table-cell-role="th">452000000.0</td>
+<td data-quarto-table-cell-role="th">22000000.0</td>
+<td data-quarto-table-cell-role="th">2048000000.0</td>
+<td data-quarto-table-cell-role="th">563000000.0</td>
+<td data-quarto-table-cell-role="th">326000000.0</td>
+<td data-quarto-table-cell-role="th">281000000.0</td>
+<td data-quarto-table-cell-role="th">878000000.0</td>
+<td data-quarto-table-cell-role="th">1001000000.0</td>
+<td data-quarto-table-cell-role="th">132000000.0</td>
+<td data-quarto-table-cell-role="th">869000000.0</td>
+<td data-quarto-table-cell-role="th">1358000000.0</td>
+<td data-quarto-table-cell-role="th">1358000000.0</td>
+<td data-quarto-table-cell-role="th">AA</td>
+<td data-quarto-table-cell-role="th">Alcoa Corporation</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2023-12-31</td>
+<td data-quarto-table-cell-role="th">178472464.0</td>
+<td data-quarto-table-cell-role="th">178472464.0</td>
+<td data-quarto-table-cell-role="th">867000000.0</td>
+<td data-quarto-table-cell-role="th">1915000000.0</td>
+<td data-quarto-table-cell-role="th">4068000000.0</td>
+<td data-quarto-table-cell-role="th">6062000000.0</td>
+<td data-quarto-table-cell-role="th">1375000000.0</td>
+<td data-quarto-table-cell-role="th">4068000000.0</td>
+<td data-quarto-table-cell-role="th">104000000.0</td>
+<td data-quarto-table-cell-role="th">4251000000.0</td>
+<td data-quarto-table-cell-role="th">5983000000.0</td>
+<td data-quarto-table-cell-role="th">5845000000.0</td>
+<td data-quarto-table-cell-role="th">1594000000.0</td>
+<td data-quarto-table-cell-role="th">4251000000.0</td>
+<td data-quarto-table-cell-role="th">-3645000000.0</td>
+<td data-quarto-table-cell-role="th">-3645000000.0</td>
+<td data-quarto-table-cell-role="th">-1293000000.0</td>
+<td data-quarto-table-cell-role="th">9187000000.0</td>
+<td data-quarto-table-cell-role="th">2000000.0</td>
+<td data-quarto-table-cell-role="th">2000000.0</td>
+<td data-quarto-table-cell-role="th">8310000000.0</td>
+<td data-quarto-table-cell-role="th">5280000000.0</td>
+<td data-quarto-table-cell-role="th">36000000.0</td>
+<td data-quarto-table-cell-role="th">1092000000.0</td>
+<td data-quarto-table-cell-role="th">815000000.0</td>
+<td data-quarto-table-cell-role="th">721000000.0</td>
+<td data-quarto-table-cell-role="th">450000000.0</td>
+<td data-quarto-table-cell-role="th">62000000.0</td>
+<td data-quarto-table-cell-role="th">20000000.0</td>
+<td data-quarto-table-cell-role="th">1836000000.0</td>
+<td data-quarto-table-cell-role="th">104000000.0</td>
+<td data-quarto-table-cell-role="th">1732000000.0</td>
+<td data-quarto-table-cell-role="th">989000000.0</td>
+<td data-quarto-table-cell-role="th">3030000000.0</td>
+<td data-quarto-table-cell-role="th">792000000.0</td>
+<td data-quarto-table-cell-role="th">79000000.0</td>
+<td data-quarto-table-cell-role="th">79000000.0</td>
+<td data-quarto-table-cell-role="th">79000000.0</td>
+<td data-quarto-table-cell-role="th">357000000.0</td>
+<td data-quarto-table-cell-role="th">1802000000.0</td>
+<td data-quarto-table-cell-role="th">1802000000.0</td>
+<td data-quarto-table-cell-role="th">88000000.0</td>
+<td data-quarto-table-cell-role="th">1714000000.0</td>
+<td data-quarto-table-cell-role="th">14155000000.0</td>
+<td data-quarto-table-cell-role="th">9750000000.0</td>
+<td data-quarto-table-cell-role="th">166000000.0</td>
+<td data-quarto-table-cell-role="th">125000000.0</td>
+<td data-quarto-table-cell-role="th">653000000.0</td>
+<td data-quarto-table-cell-role="th">520000000.0</td>
+<td data-quarto-table-cell-role="th">333000000.0</td>
+<td data-quarto-table-cell-role="th">336000000.0</td>
+<td data-quarto-table-cell-role="th">3000000.0</td>
+<td data-quarto-table-cell-role="th">979000000.0</td>
+<td data-quarto-table-cell-role="th">183000000.0</td>
+<td data-quarto-table-cell-role="th">37000000.0</td>
+<td data-quarto-table-cell-role="th">146000000.0</td>
+<td data-quarto-table-cell-role="th">6785000000.0</td>
+<td data-quarto-table-cell-role="th">-13596000000.0</td>
+<td data-quarto-table-cell-role="th">20381000000.0</td>
+<td data-quarto-table-cell-role="th">569000000.0</td>
+<td data-quarto-table-cell-role="th">8096000000.0</td>
+<td data-quarto-table-cell-role="th">11459000000.0</td>
+<td data-quarto-table-cell-role="th">257000000.0</td>
+<td data-quarto-table-cell-role="th">4405000000.0</td>
+<td data-quarto-table-cell-role="th">466000000.0</td>
+<td data-quarto-table-cell-role="th">29000000.0</td>
+<td data-quarto-table-cell-role="th">2158000000.0</td>
+<td data-quarto-table-cell-role="th">586000000.0</td>
+<td data-quarto-table-cell-role="th">355000000.0</td>
+<td data-quarto-table-cell-role="th">287000000.0</td>
+<td data-quarto-table-cell-role="th">930000000.0</td>
+<td data-quarto-table-cell-role="th">808000000.0</td>
+<td data-quarto-table-cell-role="th">152000000.0</td>
+<td data-quarto-table-cell-role="th">656000000.0</td>
+<td data-quarto-table-cell-role="th">944000000.0</td>
+<td data-quarto-table-cell-role="th">944000000.0</td>
+<td data-quarto-table-cell-role="th">AA</td>
+<td data-quarto-table-cell-role="th">Alcoa Corporation</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2023-09-30</td>
+<td data-quarto-table-cell-role="th">176969091.0</td>
+<td data-quarto-table-cell-role="th">176969091.0</td>
+<td data-quarto-table-cell-role="th">884000000.0</td>
+<td data-quarto-table-cell-role="th">1810000000.0</td>
+<td data-quarto-table-cell-role="th">4326000000.0</td>
+<td data-quarto-table-cell-role="th">6319000000.0</td>
+<td data-quarto-table-cell-role="th">1741000000.0</td>
+<td data-quarto-table-cell-role="th">4326000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">4509000000.0</td>
+<td data-quarto-table-cell-role="th">6318000000.0</td>
+<td data-quarto-table-cell-role="th">6092000000.0</td>
+<td data-quarto-table-cell-role="th">1583000000.0</td>
+<td data-quarto-table-cell-role="th">4509000000.0</td>
+<td data-quarto-table-cell-role="th">-3547000000.0</td>
+<td data-quarto-table-cell-role="th">-3547000000.0</td>
+<td data-quarto-table-cell-role="th">-1125000000.0</td>
+<td data-quarto-table-cell-role="th">9179000000.0</td>
+<td data-quarto-table-cell-role="th">2000000.0</td>
+<td data-quarto-table-cell-role="th">2000000.0</td>
+<td data-quarto-table-cell-role="th">7825000000.0</td>
+<td data-quarto-table-cell-role="th">5201000000.0</td>
+<td data-quarto-table-cell-role="th">538000000.0</td>
+<td data-quarto-table-cell-role="th">927000000.0</td>
+<td data-quarto-table-cell-role="th">665000000.0</td>
+<td data-quarto-table-cell-role="th">665000000.0</td>
+<td data-quarto-table-cell-role="th">207000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">1809000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">1809000000.0</td>
+<td data-quarto-table-cell-role="th">1055000000.0</td>
+<td data-quarto-table-cell-role="th">2624000000.0</td>
+<td data-quarto-table-cell-role="th">704000000.0</td>
+<td data-quarto-table-cell-role="th">1000000.0</td>
+<td data-quarto-table-cell-role="th">1000000.0</td>
+<td data-quarto-table-cell-role="th">1000000.0</td>
+<td data-quarto-table-cell-role="th">337000000.0</td>
+<td data-quarto-table-cell-role="th">1582000000.0</td>
+<td data-quarto-table-cell-role="th">1582000000.0</td>
+<td data-quarto-table-cell-role="th">110000000.0</td>
+<td data-quarto-table-cell-role="th">1472000000.0</td>
+<td data-quarto-table-cell-role="th">13917000000.0</td>
+<td data-quarto-table-cell-role="th">9552000000.0</td>
+<td data-quarto-table-cell-role="th">150000000.0</td>
+<td data-quarto-table-cell-role="th">159000000.0</td>
+<td data-quarto-table-cell-role="th">620000000.0</td>
+<td data-quarto-table-cell-role="th">565000000.0</td>
+<td data-quarto-table-cell-role="th">395000000.0</td>
+<td data-quarto-table-cell-role="th">336000000.0</td>
+<td data-quarto-table-cell-role="th">3000000.0</td>
+<td data-quarto-table-cell-role="th">1004000000.0</td>
+<td data-quarto-table-cell-role="th">183000000.0</td>
+<td data-quarto-table-cell-role="th">37000000.0</td>
+<td data-quarto-table-cell-role="th">146000000.0</td>
+<td data-quarto-table-cell-role="th">6532000000.0</td>
+<td data-quarto-table-cell-role="th">-13304000000.0</td>
+<td data-quarto-table-cell-role="th">19836000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">4365000000.0</td>
+<td data-quarto-table-cell-role="th">420000000.0</td>
+<td data-quarto-table-cell-role="th">33000000.0</td>
+<td data-quarto-table-cell-role="th">2190000000.0</td>
+<td data-quarto-table-cell-role="th">577000000.0</td>
+<td data-quarto-table-cell-role="th">404000000.0</td>
+<td data-quarto-table-cell-role="th">323000000.0</td>
+<td data-quarto-table-cell-role="th">886000000.0</td>
+<td data-quarto-table-cell-role="th">796000000.0</td>
+<td data-quarto-table-cell-role="th">105000000.0</td>
+<td data-quarto-table-cell-role="th">691000000.0</td>
+<td data-quarto-table-cell-role="th">926000000.0</td>
+<td data-quarto-table-cell-role="th">926000000.0</td>
+<td data-quarto-table-cell-role="th">AA</td>
+<td data-quarto-table-cell-role="th">Alcoa Corporation</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2023-06-30</td>
+<td data-quarto-table-cell-role="th">176969091.0</td>
+<td data-quarto-table-cell-role="th">176969091.0</td>
+<td data-quarto-table-cell-role="th">819000000.0</td>
+<td data-quarto-table-cell-role="th">1809000000.0</td>
+<td data-quarto-table-cell-role="th">4657000000.0</td>
+<td data-quarto-table-cell-role="th">6651000000.0</td>
+<td data-quarto-table-cell-role="th">2074000000.0</td>
+<td data-quarto-table-cell-role="th">4657000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">4842000000.0</td>
+<td data-quarto-table-cell-role="th">6650000000.0</td>
+<td data-quarto-table-cell-role="th">6458000000.0</td>
+<td data-quarto-table-cell-role="th">1616000000.0</td>
+<td data-quarto-table-cell-role="th">4842000000.0</td>
+<td data-quarto-table-cell-role="th">-3394000000.0</td>
+<td data-quarto-table-cell-role="th">-3394000000.0</td>
+<td data-quarto-table-cell-role="th">-939000000.0</td>
+<td data-quarto-table-cell-role="th">9173000000.0</td>
+<td data-quarto-table-cell-role="th">2000000.0</td>
+<td data-quarto-table-cell-role="th">2000000.0</td>
+<td data-quarto-table-cell-role="th">7670000000.0</td>
+<td data-quarto-table-cell-role="th">5074000000.0</td>
+<td data-quarto-table-cell-role="th">514000000.0</td>
+<td data-quarto-table-cell-role="th">912000000.0</td>
+<td data-quarto-table-cell-role="th">687000000.0</td>
+<td data-quarto-table-cell-role="th">687000000.0</td>
+<td data-quarto-table-cell-role="th">221000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">1808000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">1808000000.0</td>
+<td data-quarto-table-cell-role="th">932000000.0</td>
+<td data-quarto-table-cell-role="th">2596000000.0</td>
+<td data-quarto-table-cell-role="th">697000000.0</td>
+<td data-quarto-table-cell-role="th">1000000.0</td>
+<td data-quarto-table-cell-role="th">1000000.0</td>
+<td data-quarto-table-cell-role="th">1000000.0</td>
+<td data-quarto-table-cell-role="th">340000000.0</td>
+<td data-quarto-table-cell-role="th">1558000000.0</td>
+<td data-quarto-table-cell-role="th">1558000000.0</td>
+<td data-quarto-table-cell-role="th">67000000.0</td>
+<td data-quarto-table-cell-role="th">1491000000.0</td>
+<td data-quarto-table-cell-role="th">14128000000.0</td>
+<td data-quarto-table-cell-role="th">9458000000.0</td>
+<td data-quarto-table-cell-role="th">155000000.0</td>
+<td data-quarto-table-cell-role="th">158000000.0</td>
+<td data-quarto-table-cell-role="th">645000000.0</td>
+<td data-quarto-table-cell-role="th">490000000.0</td>
+<td data-quarto-table-cell-role="th">320000000.0</td>
+<td data-quarto-table-cell-role="th">341000000.0</td>
+<td data-quarto-table-cell-role="th">5000000.0</td>
+<td data-quarto-table-cell-role="th">1034000000.0</td>
+<td data-quarto-table-cell-role="th">185000000.0</td>
+<td data-quarto-table-cell-role="th">39000000.0</td>
+<td data-quarto-table-cell-role="th">146000000.0</td>
+<td data-quarto-table-cell-role="th">6445000000.0</td>
+<td data-quarto-table-cell-role="th">-13369000000.0</td>
+<td data-quarto-table-cell-role="th">19814000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">4670000000.0</td>
+<td data-quarto-table-cell-role="th">381000000.0</td>
+<td data-quarto-table-cell-role="th">93000000.0</td>
+<td data-quarto-table-cell-role="th">2400000000.0</td>
+<td data-quarto-table-cell-role="th">630000000.0</td>
+<td data-quarto-table-cell-role="th">435000000.0</td>
+<td data-quarto-table-cell-role="th">334000000.0</td>
+<td data-quarto-table-cell-role="th">1001000000.0</td>
+<td data-quarto-table-cell-role="th">806000000.0</td>
+<td data-quarto-table-cell-role="th">104000000.0</td>
+<td data-quarto-table-cell-role="th">702000000.0</td>
+<td data-quarto-table-cell-role="th">990000000.0</td>
+<td data-quarto-table-cell-role="th">990000000.0</td>
+<td data-quarto-table-cell-role="th">AA</td>
+<td data-quarto-table-cell-role="th">Alcoa Corporation</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2023-12-31</td>
+<td data-quarto-table-cell-role="th">458367358.0</td>
+<td data-quarto-table-cell-role="th">501891243.0</td>
+<td data-quarto-table-cell-role="th">4528000000.0</td>
+<td data-quarto-table-cell-role="th">6755000000.0</td>
+<td data-quarto-table-cell-role="th">900000000.0</td>
+<td data-quarto-table-cell-role="th">11564000000.0</td>
+<td data-quarto-table-cell-role="th">4454000000.0</td>
+<td data-quarto-table-cell-role="th">900000000.0</td>
+<td data-quarto-table-cell-role="th">188000000.0</td>
+<td data-quarto-table-cell-role="th">4997000000.0</td>
+<td data-quarto-table-cell-role="th">11561000000.0</td>
+<td data-quarto-table-cell-role="th">4991000000.0</td>
+<td data-quarto-table-cell-role="th">-6000000.0</td>
+<td data-quarto-table-cell-role="th">4997000000.0</td>
+<td data-quarto-table-cell-role="th">-839000000.0</td>
+<td data-quarto-table-cell-role="th">-839000000.0</td>
+<td data-quarto-table-cell-role="th">10295000000.0</td>
+<td data-quarto-table-cell-role="th">1133000000.0</td>
+<td data-quarto-table-cell-role="th">5000000.0</td>
+<td data-quarto-table-cell-role="th">5000000.0</td>
+<td data-quarto-table-cell-role="th">9295000000.0</td>
+<td data-quarto-table-cell-role="th">7406000000.0</td>
+<td data-quarto-table-cell-role="th">237000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">271000000.0</td>
+<td data-quarto-table-cell-role="th">146000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">6752000000.0</td>
+<td data-quarto-table-cell-role="th">188000000.0</td>
+<td data-quarto-table-cell-role="th">6564000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">1889000000.0</td>
+<td data-quarto-table-cell-role="th">102000000.0</td>
+<td data-quarto-table-cell-role="th">3000000.0</td>
+<td data-quarto-table-cell-role="th">3000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">382000000.0</td>
+<td data-quarto-table-cell-role="th">1402000000.0</td>
+<td data-quarto-table-cell-role="th">719000000.0</td>
+<td data-quarto-table-cell-role="th">110000000.0</td>
+<td data-quarto-table-cell-role="th">411000000.0</td>
+<td data-quarto-table-cell-role="th">14286000000.0</td>
+<td data-quarto-table-cell-role="th">7943000000.0</td>
+<td data-quarto-table-cell-role="th">206000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">206000000.0</td>
+<td data-quarto-table-cell-role="th">206000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">4097000000.0</td>
+<td data-quarto-table-cell-role="th">1338000000.0</td>
+<td data-quarto-table-cell-role="th">2759000000.0</td>
+<td data-quarto-table-cell-role="th">3434000000.0</td>
+<td data-quarto-table-cell-role="th">-2594000000.0</td>
+<td data-quarto-table-cell-role="th">6028000000.0</td>
+<td data-quarto-table-cell-role="th">1085000000.0</td>
+<td data-quarto-table-cell-role="th">230000000.0</td>
+<td data-quarto-table-cell-role="th">3372000000.0</td>
+<td data-quarto-table-cell-role="th">25000000.0</td>
+<td data-quarto-table-cell-role="th">6343000000.0</td>
+<td data-quarto-table-cell-role="th">434000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">2564000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">1147000000.0</td>
+<td data-quarto-table-cell-role="th">966000000.0</td>
+<td data-quarto-table-cell-role="th">451000000.0</td>
+<td data-quarto-table-cell-role="th">1304000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">1304000000.0</td>
+<td data-quarto-table-cell-role="th">2039000000.0</td>
+<td data-quarto-table-cell-role="th">2039000000.0</td>
+<td data-quarto-table-cell-role="th">ZTS</td>
+<td data-quarto-table-cell-role="th">Zoetis Inc.</td>
+<td data-quarto-table-cell-role="th">43523885.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">683000000.0</td>
+<td data-quarto-table-cell-role="th">2000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">0.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">5597000000.0</td>
+<td data-quarto-table-cell-role="th">146000000.0</td>
+<td data-quarto-table-cell-role="th">198000000.0</td>
+<td data-quarto-table-cell-role="th">1316000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">110000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">-18000000.0</td>
+<td data-quarto-table-cell-role="th">1322000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">3000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2023-09-30</td>
+<td data-quarto-table-cell-role="th">459524713.0</td>
+<td data-quarto-table-cell-role="th">501891243.0</td>
+<td data-quarto-table-cell-role="th">4803000000.0</td>
+<td data-quarto-table-cell-role="th">6745000000.0</td>
+<td data-quarto-table-cell-role="th">918000000.0</td>
+<td data-quarto-table-cell-role="th">11632000000.0</td>
+<td data-quarto-table-cell-role="th">4614000000.0</td>
+<td data-quarto-table-cell-role="th">918000000.0</td>
+<td data-quarto-table-cell-role="th">191000000.0</td>
+<td data-quarto-table-cell-role="th">5078000000.0</td>
+<td data-quarto-table-cell-role="th">11630000000.0</td>
+<td data-quarto-table-cell-role="th">5074000000.0</td>
+<td data-quarto-table-cell-role="th">-4000000.0</td>
+<td data-quarto-table-cell-role="th">5078000000.0</td>
+<td data-quarto-table-cell-role="th">-814000000.0</td>
+<td data-quarto-table-cell-role="th">-814000000.0</td>
+<td data-quarto-table-cell-role="th">10140000000.0</td>
+<td data-quarto-table-cell-role="th">1116000000.0</td>
+<td data-quarto-table-cell-role="th">5000000.0</td>
+<td data-quarto-table-cell-role="th">5000000.0</td>
+<td data-quarto-table-cell-role="th">9032000000.0</td>
+<td data-quarto-table-cell-role="th">7424000000.0</td>
+<td data-quarto-table-cell-role="th">259000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">262000000.0</td>
+<td data-quarto-table-cell-role="th">160000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">6743000000.0</td>
+<td data-quarto-table-cell-role="th">191000000.0</td>
+<td data-quarto-table-cell-role="th">6552000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">1608000000.0</td>
+<td data-quarto-table-cell-role="th">97000000.0</td>
+<td data-quarto-table-cell-role="th">2000000.0</td>
+<td data-quarto-table-cell-role="th">2000000.0</td>
+<td data-quarto-table-cell-role="th">2000000.0</td>
+<td data-quarto-table-cell-role="th">284000000.0</td>
+<td data-quarto-table-cell-role="th">1225000000.0</td>
+<td data-quarto-table-cell-role="th">532000000.0</td>
+<td data-quarto-table-cell-role="th">144000000.0</td>
+<td data-quarto-table-cell-role="th">388000000.0</td>
+<td data-quarto-table-cell-role="th">14106000000.0</td>
+<td data-quarto-table-cell-role="th">7884000000.0</td>
+<td data-quarto-table-cell-role="th">216000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">190000000.0</td>
+<td data-quarto-table-cell-role="th">190000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">4160000000.0</td>
+<td data-quarto-table-cell-role="th">1398000000.0</td>
+<td data-quarto-table-cell-role="th">2762000000.0</td>
+<td data-quarto-table-cell-role="th">3318000000.0</td>
+<td data-quarto-table-cell-role="th">-2529000000.0</td>
+<td data-quarto-table-cell-role="th">5847000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">5847000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">6222000000.0</td>
+<td data-quarto-table-cell-role="th">467000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">2744000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">1185000000.0</td>
+<td data-quarto-table-cell-role="th">1062000000.0</td>
+<td data-quarto-table-cell-role="th">497000000.0</td>
+<td data-quarto-table-cell-role="th">1257000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">1257000000.0</td>
+<td data-quarto-table-cell-role="th">1751000000.0</td>
+<td data-quarto-table-cell-role="th">1751000000.0</td>
+<td data-quarto-table-cell-role="th">ZTS</td>
+<td data-quarto-table-cell-role="th">Zoetis Inc.</td>
+<td data-quarto-table-cell-role="th">42366530.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">693000000.0</td>
+<td data-quarto-table-cell-role="th">3000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">5369000000.0</td>
+<td data-quarto-table-cell-role="th">160000000.0</td>
+<td data-quarto-table-cell-role="th">0.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">144000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">-18000000.0</td>
+<td data-quarto-table-cell-role="th">1275000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2023-06-30</td>
+<td data-quarto-table-cell-role="th">460750652.0</td>
+<td data-quarto-table-cell-role="th">501891243.0</td>
+<td data-quarto-table-cell-role="th">4843000000.0</td>
+<td data-quarto-table-cell-role="th">6745000000.0</td>
+<td data-quarto-table-cell-role="th">659000000.0</td>
+<td data-quarto-table-cell-role="th">11182000000.0</td>
+<td data-quarto-table-cell-role="th">4414000000.0</td>
+<td data-quarto-table-cell-role="th">659000000.0</td>
+<td data-quarto-table-cell-role="th">188000000.0</td>
+<td data-quarto-table-cell-role="th">4625000000.0</td>
+<td data-quarto-table-cell-role="th">11180000000.0</td>
+<td data-quarto-table-cell-role="th">4621000000.0</td>
+<td data-quarto-table-cell-role="th">-4000000.0</td>
+<td data-quarto-table-cell-role="th">4625000000.0</td>
+<td data-quarto-table-cell-role="th">-895000000.0</td>
+<td data-quarto-table-cell-role="th">-895000000.0</td>
+<td data-quarto-table-cell-role="th">9543000000.0</td>
+<td data-quarto-table-cell-role="th">1098000000.0</td>
+<td data-quarto-table-cell-role="th">5000000.0</td>
+<td data-quarto-table-cell-role="th">5000000.0</td>
+<td data-quarto-table-cell-role="th">9128000000.0</td>
+<td data-quarto-table-cell-role="th">7359000000.0</td>
+<td data-quarto-table-cell-role="th">217000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">278000000.0</td>
+<td data-quarto-table-cell-role="th">121000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">6743000000.0</td>
+<td data-quarto-table-cell-role="th">188000000.0</td>
+<td data-quarto-table-cell-role="th">6555000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">1769000000.0</td>
+<td data-quarto-table-cell-role="th">107000000.0</td>
+<td data-quarto-table-cell-role="th">2000000.0</td>
+<td data-quarto-table-cell-role="th">2000000.0</td>
+<td data-quarto-table-cell-role="th">2000000.0</td>
+<td data-quarto-table-cell-role="th">247000000.0</td>
+<td data-quarto-table-cell-role="th">1413000000.0</td>
+<td data-quarto-table-cell-role="th">724000000.0</td>
+<td data-quarto-table-cell-role="th">87000000.0</td>
+<td data-quarto-table-cell-role="th">464000000.0</td>
+<td data-quarto-table-cell-role="th">13749000000.0</td>
+<td data-quarto-table-cell-role="th">7566000000.0</td>
+<td data-quarto-table-cell-role="th">173000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">192000000.0</td>
+<td data-quarto-table-cell-role="th">192000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">3966000000.0</td>
+<td data-quarto-table-cell-role="th">1252000000.0</td>
+<td data-quarto-table-cell-role="th">2714000000.0</td>
+<td data-quarto-table-cell-role="th">3235000000.0</td>
+<td data-quarto-table-cell-role="th">-2447000000.0</td>
+<td data-quarto-table-cell-role="th">5682000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">5682000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">6183000000.0</td>
+<td data-quarto-table-cell-role="th">443000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">2701000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">1129000000.0</td>
+<td data-quarto-table-cell-role="th">1074000000.0</td>
+<td data-quarto-table-cell-role="th">498000000.0</td>
+<td data-quarto-table-cell-role="th">1322000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">1322000000.0</td>
+<td data-quarto-table-cell-role="th">1714000000.0</td>
+<td data-quarto-table-cell-role="th">1714000000.0</td>
+<td data-quarto-table-cell-role="th">ZTS</td>
+<td data-quarto-table-cell-role="th">Zoetis Inc.</td>
+<td data-quarto-table-cell-role="th">41140591.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">689000000.0</td>
+<td data-quarto-table-cell-role="th">3000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">5126000000.0</td>
+<td data-quarto-table-cell-role="th">121000000.0</td>
+<td data-quarto-table-cell-role="th">173000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">87000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">-20000000.0</td>
+<td data-quarto-table-cell-role="th">1342000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2023-03-31</td>
+<td data-quarto-table-cell-role="th">462495343.0</td>
+<td data-quarto-table-cell-role="th">501891243.0</td>
+<td data-quarto-table-cell-role="th">4457000000.0</td>
+<td data-quarto-table-cell-role="th">6742000000.0</td>
+<td data-quarto-table-cell-role="th">442000000.0</td>
+<td data-quarto-table-cell-role="th">11056000000.0</td>
+<td data-quarto-table-cell-role="th">4354000000.0</td>
+<td data-quarto-table-cell-role="th">442000000.0</td>
+<td data-quarto-table-cell-role="th">180000000.0</td>
+<td data-quarto-table-cell-role="th">4494000000.0</td>
+<td data-quarto-table-cell-role="th">11053000000.0</td>
+<td data-quarto-table-cell-role="th">4491000000.0</td>
+<td data-quarto-table-cell-role="th">-3000000.0</td>
+<td data-quarto-table-cell-role="th">4494000000.0</td>
+<td data-quarto-table-cell-role="th">-828000000.0</td>
+<td data-quarto-table-cell-role="th">-828000000.0</td>
+<td data-quarto-table-cell-role="th">9045000000.0</td>
+<td data-quarto-table-cell-role="th">1079000000.0</td>
+<td data-quarto-table-cell-role="th">5000000.0</td>
+<td data-quarto-table-cell-role="th">5000000.0</td>
+<td data-quarto-table-cell-role="th">9263000000.0</td>
+<td data-quarto-table-cell-role="th">7348000000.0</td>
+<td data-quarto-table-cell-role="th">216000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">262000000.0</td>
+<td data-quarto-table-cell-role="th">131000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">6739000000.0</td>
+<td data-quarto-table-cell-role="th">180000000.0</td>
+<td data-quarto-table-cell-role="th">6559000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">1915000000.0</td>
+<td data-quarto-table-cell-role="th">104000000.0</td>
+<td data-quarto-table-cell-role="th">3000000.0</td>
+<td data-quarto-table-cell-role="th">3000000.0</td>
+<td data-quarto-table-cell-role="th">3000000.0</td>
+<td data-quarto-table-cell-role="th">232000000.0</td>
+<td data-quarto-table-cell-role="th">1576000000.0</td>
+<td data-quarto-table-cell-role="th">875000000.0</td>
+<td data-quarto-table-cell-role="th">277000000.0</td>
+<td data-quarto-table-cell-role="th">424000000.0</td>
+<td data-quarto-table-cell-role="th">13754000000.0</td>
+<td data-quarto-table-cell-role="th">7485000000.0</td>
+<td data-quarto-table-cell-role="th">143000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">161000000.0</td>
+<td data-quarto-table-cell-role="th">161000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">4052000000.0</td>
+<td data-quarto-table-cell-role="th">1314000000.0</td>
+<td data-quarto-table-cell-role="th">2738000000.0</td>
+<td data-quarto-table-cell-role="th">3129000000.0</td>
+<td data-quarto-table-cell-role="th">-2374000000.0</td>
+<td data-quarto-table-cell-role="th">5503000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">5503000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">6269000000.0</td>
+<td data-quarto-table-cell-role="th">411000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">2563000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">1065000000.0</td>
+<td data-quarto-table-cell-role="th">999000000.0</td>
+<td data-quarto-table-cell-role="th">499000000.0</td>
+<td data-quarto-table-cell-role="th">1186000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">1186000000.0</td>
+<td data-quarto-table-cell-role="th">2105000000.0</td>
+<td data-quarto-table-cell-role="th">2105000000.0</td>
+<td data-quarto-table-cell-role="th">ZTS</td>
+<td data-quarto-table-cell-role="th">Zoetis Inc.</td>
+<td data-quarto-table-cell-role="th">39395900.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">701000000.0</td>
+<td data-quarto-table-cell-role="th">4000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">4807000000.0</td>
+<td data-quarto-table-cell-role="th">131000000.0</td>
+<td data-quarto-table-cell-role="th">174000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">277000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">-20000000.0</td>
+<td data-quarto-table-cell-role="th">1206000000.0</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">&gt;&gt;&gt;&gt;&gt;&gt;&gt; 242b0fb40addf3443779701a9f0d3f1c1c713ba9</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td data-quarto-table-cell-role="th">NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>5534 rows × 1 columns</p>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-576251c4-c82a-4be8-8c20-f8dbdae4927f')" title="Convert this dataframe to an interactive table." style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"></path>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-576251c4-c82a-4be8-8c20-f8dbdae4927f button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-576251c4-c82a-4be8-8c20-f8dbdae4927f');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-73e3c0c8-4a3b-449a-978e-8dbf766d4971">
+  <button class="colab-df-quickchart" onclick="quickchart('df-73e3c0c8-4a3b-449a-978e-8dbf766d4971')" title="Suggest charts" style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"></path>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-73e3c0c8-4a3b-449a-978e-8dbf766d4971 button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creating new data frames of balance sheet data with only the top 10% and bottom</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 10% percent companies when looking at esg</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>top_ten_bs <span class="op">=</span> pd.merge(top_ten, balance_sheet_data, on <span class="op">=</span><span class="st">'Symbol'</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>bottom_ten_bs <span class="op">=</span> pd.merge(bot_ten, balance_sheet_data, on <span class="op">=</span> <span class="st">'Symbol'</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># creating new data frames of income statements data with only the top 10% and bottom</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 10% percent companies when looking at esg</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>top_ten_is <span class="op">=</span> pd.merge(top_ten, income_statements_data, on <span class="op">=</span><span class="st">'Symbol'</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>bottom_ten_is <span class="op">=</span> pd.merge(bot_ten, income_statements_data, on <span class="op">=</span><span class="st">'Symbol'</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co"># creating new data frames of historical data with only the top 10% and bottom</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 10% percent companies when looking at esg</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>top_ten_hist <span class="op">=</span> pd.merge(top_ten, historical_data, on <span class="op">=</span><span class="st">'Symbol'</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>bottom_ten_hist <span class="op">=</span> pd.merge(bot_ten, historical_data, on <span class="op">=</span><span class="st">'Symbol'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exploratory-data-analysis" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Exploratory Data Analysis</h1>
 <p>I will now look to see if there is a correlation between a company having a high ESG score and also being more financially reliable.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scatter plot for ESG score vs. Stockholders Equity</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.figure(figsize=(10, 6))</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.scatter(top_ten_bs['total'], top_ten_bs['Stockholders Equity'], color='blue', label='Top 10%')</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.scatter(bottom_ten_bs['total'], bottom_ten_bs['Stockholders Equity'], color='red', label='Bottom 10%')</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.xlabel('Total ESG Score')</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.ylabel('Stockholders Equity')</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.title('Scatter Plot of ESG Score vs. Stockholders Equity')</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.legend()</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.grid(True)</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.show()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-outputid="dd6a7827-8820-42ce-cd10-ba1ab9face00" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>top_ten_bs[<span class="st">'Stockholders Equity'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>0         23219000000
+1         24132000000
+2         25228000000
+3         24939000000
+4         24860000000
+            ...      
+575    205250000000.0
+576    204802000000.0
+577    199703000000.0
+578    199046000000.0
+579    198685000000.0
+Name: Stockholders Equity, Length: 580, dtype: object</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="7847b5d7-9cd9-4866-8a1d-c7f932bacc59" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>top_ten_bs.info()</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>top_ten_bs[<span class="st">'total'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 580 entries, 0 to 579
+Columns: 150 entries, Symbol to General Partnership Capital
+dtypes: float64(5), object(145)
+memory usage: 679.8+ KB</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<pre><code>0      31.8
+1      31.8
+2      31.8
+3      31.8
+4      31.8
+       ... 
+575    41.6
+576    41.6
+577    41.6
+578    41.6
+579    41.6
+Name: total, Length: 580, dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="08cbf153-01de-4c5f-9444-1e2f6c57c85a" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot scatter plot for ESG score vs. Stockholders Equity</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#sns.scatterplot(data = top_ten_bs, x = 'total', y ='Stockholders Equity')</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#sns.scatterplot(data = bottom_ten_bs, x = 'total', y ='Stockholders Equity')</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>TypeError: 'value' must be an instance of str or bytes, not a float</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="project_files/figure-html/cell-16-output-2.png" class="img-fluid"></p>
+</div>
 </div>
 <p>This scatter plot shows the relationship between ESG score and stockholders equity. Although many of the points are in the same range, the only companies that have both a high ESG score and high stockholders equity value are in the top 10% of companies. A higher stockholders equity indicates a company having more financial stability.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.figure(figsize=(10, 6))</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.scatter(top_ten_is['total'], top_ten_is['EBIT'], color='blue', label='Top 10%')</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.scatter(bottom_ten_is['total'], bottom_ten_is['EBIT'], color='red', label='Bottom 10%')</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.xlabel('Total ESG Score')</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.ylabel('Total Operating Income')</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.title('Scatter Plot of ESG Score vs. Operating Income')</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.legend()</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.grid(True)</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.show()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.figure(figsize=(10, 6))</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.scatter(top_ten_is['total'], top_ten_is['EBIT'], color='blue', label='Top 10%')</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.scatter(bottom_ten_is['total'], bottom_ten_is['EBIT'], color='red', label='Bottom 10%')</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.xlabel('Total ESG Score')</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.ylabel('Total Operating Income')</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.title('Scatter Plot of ESG Score vs. Operating Income')</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.legend()</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.grid(True)</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.show()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In this graph we can see that only companies in the top 10% ESG scores have high operating incomes. This indicates the companies ability to profit from it’s operations and tells someone looking at the data that the company will have longevity.</p>
 </section>
