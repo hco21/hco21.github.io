@@ -1,5 +1,5 @@
 ---
-title: "Hannah Olejniczak" 
+title: "Hannah Olejniczak"  
 about:
   template: trestles  # jolla  trestles  solana  marquee  broadside
   #img/profilepic.png
