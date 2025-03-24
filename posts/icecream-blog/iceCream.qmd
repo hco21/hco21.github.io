@@ -14,8 +14,6 @@ toc: true
 
 format: 
   html: default
-  ipynb: default
-format-links: [ipynb]
 ---
 
 ```{r}
