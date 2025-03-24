@@ -1,0 +1,39 @@
+---
+title: "Hannah Olejniczak"  
+about:
+  template: trestles  # jolla  trestles  solana  marquee  broadside
+  #img/profilepic.png
+  image: img/profilepic.png
+  image-width: 16em
+  image-shape: round # rectangle  round  rounded
+  
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com/in/hannah-olejniczak-26b11a297
+    - icon: github
+      text: GitHub
+      href: https://github.com/hco21
+    - icon: file-earmark-pdf
+      text: Resumé
+      href: https://hco21.github.io/resume.pdf
+    - icon: mailbox
+      text: Email
+      href: mailto:hco2@geneseo.edu
+
+---
+
+
+Hannah Olejniczak majors in Applied Mathematics with minors in Data Analytics and Business Studies at SUNY Geneseo. When not working on school work, Hannah enjoys spending time playing softball and hanging out with her friends. 
+
+## Education
+
+State University of New York at Geneseo | Geneseo, NY <br>
+B.S. in Applied Mathematics | Aug 2021 - May 2025 <br>
+Minors in Data Analytics & Business Administration 
+
+## Experience
+
+
+
+

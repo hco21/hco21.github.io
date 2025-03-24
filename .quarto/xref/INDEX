@@ -1,0 +1,94 @@
+{
+  "danl-210-quarto-reticulate.qmd": {
+    "danl-210-quarto-reticulate.html": "52b09284"
+  },
+  "blog-listing.qmd": {
+    "blog-listing.html": "ce8bb47d"
+  },
+  "classwork3-danl210.qmd": {
+    "classwork3-danl210.html": "f2498567"
+  },
+  "danl-210-quarto-py-only.qmd": {
+    "danl-210-quarto-py-only.html": "1d4d5ab5"
+  },
+  "index.qmd": {
+    "index.html": "cdca39c7"
+  },
+  "posts/beer-markets/beer-markets.qmd": {
+    "beer-markets.html": "c3db3054",
+    "beer-markets.ipynb": "fc25315c"
+  },
+  "posts/post-with-code/index.qmd": {
+    "index.html": "41ea019c"
+  },
+  "posts/starwars/starwars_df.qmd": {
+    "starwars_df.html": "4365464c"
+  },
+  "posts/welcome/index.qmd": {
+    "index.html": "82cbbc42"
+  },
+  "basic-python-intro.ipynb": {
+    "basic-python-intro.html": "051ff2ef"
+  },
+  "classwork2-danl210.Rmd": {
+    "classwork2-danl210.html": "f160a21a"
+  },
+  "project.qmd": {
+    "project.html": "e76aed04"
+  },
+  "posts/pythonBasicsBlog/about.qmd": {
+    "about.html": "97c6972c"
+  },
+  "posts/pythonBasicsBlog/index.qmd": {
+    "index.html": "d7bb2b8e"
+  },
+  "posts/pythonBasicsBlog/posts/post-with-code/index.qmd": {
+    "index.html": "dfde41d0"
+  },
+  "posts/pythonBasicsBlog/posts/welcome/index.qmd": {
+    "index.html": "a0bd6aa7"
+  },
+  "danl-210-hw-02-q.ipynb": {
+    "danl-210-hw-02-q.html": "b681c4fa"
+  },
+  "posts/pythonBasicsBlog/pythonBasics.qmd": {
+    "pythonBasics.html": "3546a780"
+  },
+  "project.ipynb": {
+    "project.html": "a9947876"
+  },
+  "danl-310-quarto-r.qmd": {
+    "danl-310-quarto-r.html": "ce6d6030"
+  },
+  "danl 210 files/basic-python-intro.ipynb": {
+    "basic-python-intro.html": "827dcd76"
+  },
+  "danl 210 files/classwork2-danl210.Rmd": {
+    "classwork2-danl210.html": "96c6d954"
+  },
+  "danl 210 files/classwork3-danl210.qmd": {
+    "classwork3-danl210.html": "305debc6"
+  },
+  "danl 210 files/danl-210-hw-02-q.ipynb": {
+    "danl-210-hw-02-q.html": "42a2cebf"
+  },
+  "danl-310-class1-27.qmd": {
+    "danl-310-class1-27.html": "ee9241c8"
+  },
+  "ggplot_basics_blog.qmd": {
+    "ggplot_basics_blog.html": "e02988fc"
+  },
+  "Classwork4-danl310.qmd": {
+    "Classwork4-danl310.html": "4d84c50f"
+  },
+  "classwork5-danl310.qmd": {
+    "classwork5-danl310.html": "19b9a9ec"
+  },
+  "posts/ggplot-basics/ggplot_basics_blog.qmd": {
+    "ggplot_basics_blog.html": "5c2226a3"
+  },
+  "posts/icecream-blog/iceCream.qmd": {
+    "iceCream.html": "8aa40f3d",
+    "iceCream.ipynb": "f6fd4efb"
+  }
+}

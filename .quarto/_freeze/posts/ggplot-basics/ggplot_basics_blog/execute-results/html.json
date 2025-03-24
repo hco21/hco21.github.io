@@ -1,0 +1,17 @@
+{
+  "hash": "0383c4c702f99da6a97908b5e9446c04",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"ggplot_basics\"\nauthor: Hannah_Olejniczak\ndate: 2025-02-17\ncategories: [R, ggplot]\nimage: ploticon.png\n\n---\n\n\n\n# `ggplot` visualization\n\nIn Lecture 3, Lecture 4 and Classwork 4 we learned about making plots. In Lecture 3 we learned about how to change aesthetics such as size, shape and color of the objects in the plot. Next we learned how to use facets to split our plot into subplots. This is helpful when wanting to compare different groups to each other. After this we learned about how to use `geom_*()` to change the type of plot we are using. There are also graphs that will calculate new values to plot, such as histograms and box plots. Lecture 4 goes into the themes you can use in a plot and also explains how the different layers work. It also goes over how to save the plots as a .png or .pdf. In Classwork 4 we put all of it together to predict what plots certain code would produce as well as recreating plots already given to us. \n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(ggthemes)\n\nggplot(mpg,\n       aes(x = displ,\n           y = hwy,\n           color = class)) +\n  geom_point(alpha = .5) +\n  scale_color_tableau()\n```\n\n::: {.cell-output-display}\n![](ggplot_basics_blog_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n",
+    "supporting": [
+      "ggplot_basics_blog_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "hash": "7533393f02d90874f8610c1d0ff3b738",
+  "result": {
+    "markdown": "---\ntitle: \"Classwork 2\"\noutput: html_document\ndate: \"2024-01-30\"\n---\n\n\n\n\n# Heading 1\n - item 1\n - item 2\n - item 3\n \n 1. item 1\n 2. item 2\n \n ![Geneseo Logo][DANL 210](https://bcdanl.github.io/210)\n![Geneseo Logo](https://bcdanl.github.io/img/geneseo-logo.gif)\n ```python \n #python code block\n import numpy as np\n ```\n > Be yourself. Everyone else is already taken. - Oscar Wilde\n\n:cow2:",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,28 @@
+---
+title: "ggplot_basics"
+author: Hannah_Olejniczak
+date: 2025-02-17
+categories: [R, ggplot]
+image: ploticon.png
+
+---
+
+# `ggplot` visualization
+
+In Lecture 3, Lecture 4 and Classwork 4 we learned about making plots. In Lecture 3 we learned about how to change aesthetics such as size, shape and color of the objects in the plot. Next we learned how to use facets to split our plot into subplots. This is helpful when wanting to compare different groups to each other. After this we learned about how to use `geom_*()` to change the type of plot we are using. There are also graphs that will calculate new values to plot, such as histograms and box plots. Lecture 4 goes into the themes you can use in a plot and also explains how the different layers work. It also goes over how to save the plots as a .png or .pdf. In Classwork 4 we put all of it together to predict what plots certain code would produce as well as recreating plots already given to us. 
+
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(ggthemes)
+
+ggplot(mpg,
+       aes(x = displ,
+           y = hwy,
+           color = class)) +
+  geom_point(alpha = .5) +
+  scale_color_tableau()
+```
+

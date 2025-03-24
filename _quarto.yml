@@ -1,0 +1,36 @@
+project:
+  type: website
+  output-dir: "."
+
+website:
+  title: "Hannah Olejniczak"
+  navbar:
+    pinned: true
+    left:
+      - text: Project
+        href: project.ipynb
+        
+      - text: Python Basics
+        href: basic-python-intro.ipynb
+        
+      - text: R Basics
+        href: danl-310-quarto-r.qmd 
+        
+      - text: Blog
+        href: blog-listing.qmd
+        
+    page-footer: 
+    center: "Powered with GitHub and Quarto<br>© Hannah Olejniczak, 2025"
+
+format:
+  html:
+    theme: 
+      light: journal
+      dark: solar
+    mainfont: system-ui; 
+    highlight-style: breeze
+    css: styles.css
+    toc: false
+    include-after-body: target_blank.html
+    
+

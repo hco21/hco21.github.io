@@ -1,0 +1,13 @@
+[
+  {
+    "listing": "/blog-listing.html",
+    "items": [
+      "/posts/icecream-blog/iceCream.html",
+      "/posts/ggplot-basics/ggplot_basics_blog.html",
+      "/posts/beer-markets/beer-markets.html",
+      "/posts/starwars/starwars_df.html",
+      "/posts/post-with-code/index.html",
+      "/posts/welcome/index.html"
+    ]
+  }
+]
