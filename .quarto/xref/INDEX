@@ -90,5 +90,8 @@
   "posts/icecream-blog/iceCream.qmd": {
     "iceCream.html": "8aa40f3d",
     "iceCream.ipynb": "f6fd4efb"
+  },
+  "posts/dog-blog/dogblog.qmd": {
+    "dogblog.html": "2f4b3a19"
   }
 }

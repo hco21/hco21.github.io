@@ -1,0 +1,301 @@
+---
+title: "Dog Licenses in New York City"
+author: "Hannah Olejniczak"
+date: "2025-04-04"
+categories: [dogs, code, data analytics]
+image: "dog-breeds.png"
+
+execute: 
+  warning: false
+  message: false
+  code-tools: true
+  
+toc: true
+
+format: 
+  html: default
+---
+
+
+```{r}
+#| include: false
+library(knitr)
+library(rmarkdown)
+library(tidyverse)
+library(skimr)
+library(ggthemes)
+library(hrbrthemes)
+library(scales)
+library(skimr)
+
+theme_set(theme_ipsum()+
+          theme(strip.background =element_rect(fill="lightgray"),
+                axis.title.x  = element_text(angle = 0,
+                                            size = rel(1.5),
+                                            margin = margin(10,0,0,0)),
+                axis.title.y  = element_text(angle = 0,
+                                            size = rel(1.5),
+                                            margin = margin(0,10,0,0))
+                )
+          )
+```
+
+
+```{r}
+nyc_dog_license <- read_csv(
+  'https://bcdanl.github.io/data/nyc_dog_license.csv')
+
+nyc_zips_coord <- read_csv(
+  'https://bcdanl.github.io/data/nyc_zips_coord.csv')
+
+nyc_zips_df <- read_csv(
+  'https://bcdanl.github.io/data/nyc_zips_df.csv')
+```
+
+```{r}
+add_loc <- nyc_zips_coord |>
+  left_join(nyc_zips_df)
+```
+```{r}
+plot1 <- nyc_dog_license |>
+  group_by(animal_gender, zip_code) |>
+  summarise(count = n(), .groups = "drop") |>
+  mutate(total_dogs = sum(count), 
+         prop_male = ifelse(animal_gender == "M", count/total_dogs, NA)) |>
+  filter(animal_gender == "M") |>
+  select(zip_code, prop_male)
+
+plot_1 <- add_loc |>
+  left_join(plot1)
+
+ggplot(data = plot_1,
+       aes(x = X,
+           y = Y,
+           group = zip_code,
+           fill = prop_male)) +
+  geom_polygon(color = "lightgrey",
+               size = .3)
+
+plot2 <- nyc_dog_license |>
+  group_by(animal_gender, zip_code) |>
+  summarise(count = n(), .groups = "drop") |>
+  mutate(total_dogs = sum(count), 
+         prop_female = ifelse(animal_gender == "F", count/total_dogs, NA)) |>
+  filter(animal_gender == "F") |>
+  select(zip_code, prop_female)
+
+plot_2 <- add_loc |>
+  left_join(plot2)
+
+ggplot(data = plot_2,
+       aes(x = X,
+           y = Y,
+           group = zip_code,
+           fill = prop_female)) +
+  geom_polygon(color = "lightgrey",
+               size = .3)
+
+
+```
+```{r}
+ggplot(nyc_dog_license, 
+       aes(x = borough,
+           fill = animal_gender)) +
+  geom_bar(stat = "count", 
+           position = "stack") +
+  labs(title = "Male vs Female Licensed Dogs in Each Borough", 
+       x = "Borough", 
+       y = "Number of Dogs", 
+       fill = "Gender") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+This plot shows the number of female and male dogs in each borough. It can be seen that Manhattan has the largest amount of dogs licensed in it. 
+
+```{r}
+top_breeds <- nyc_dog_license |>
+  group_by(breed_rc) |>
+  summarise(count = n()) |>
+  arrange(desc(count)) |>
+  slice_head(n = 5)
+
+ggplot(top_breeds, 
+       aes(x = reorder(breed_rc, count),
+           y = count,
+           fill = breed_rc)) +
+ geom_bar(stat = "identity") +
+ labs(title = "5 Most Common Dog Breeds", 
+           x = "Dog Breeds", 
+           y = "Number of Dogs") +
+  theme_minimal () +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "none") 
+```
+
+```{r}
+york <- nyc_dog_license |>
+  group_by(zip_code, breed_rc) |>
+  summarise(count = n(), .groups = "drop") |>
+  group_by(zip_code) |>
+  mutate(total_dogs = sum(count), 
+         prop_york = ifelse(breed_rc == "Yorkshire Terrier", count/total_dogs, NA)) |>
+  filter(breed_rc == "Yorkshire Terrier") |>
+  select(zip_code, prop_york)
+
+add_loc <- nyc_zips_coord |>
+  left_join(nyc_zips_df)
+
+york_plot <- add_loc |>
+  left_join(york)
+
+ggplot(data = york_plot,
+       aes(x = X,
+           y = Y,
+           group = zip_code,
+           fill = prop_york)) +
+  geom_polygon(color = "lightgrey",
+               size = .3) +
+  scale_fill_viridis_c(option = "inferno",
+                       na.value = NA) +
+  theme_void() +
+  theme(legend.position = "bottom",
+        legend.direction = "horizontal",
+        plot.title = element_text(size = 15, face = "bold"),
+        plot.title.position = "panel") +
+  labs(title = "Yorkshire Proportion")
+```
+
+```{r}
+lab <- nyc_dog_license |>
+  group_by(zip_code, breed_rc) |>
+  summarise(count = n(), .groups = "drop") |>
+  group_by(zip_code) |>
+  mutate(total_dogs = sum(count), 
+         prop_lab = ifelse(breed_rc == "Labrador (or Crossbreed)", count/total_dogs, NA)) |>
+  filter(breed_rc == "Labrador (or Crossbreed)") |>
+  select(zip_code, prop_lab)
+
+add_loc <- nyc_zips_coord |>
+  left_join(nyc_zips_df)
+
+lab_plot <- add_loc |>
+  left_join(lab)
+
+ggplot(data = lab_plot,
+       aes(x = X,
+           y = Y,
+           group = zip_code,
+           fill = prop_lab)) +
+  geom_polygon(color = "lightgrey",
+               size = .3) +
+   scale_fill_viridis_c(option = "inferno",
+                       na.value = NA) +
+  theme_void() +
+  theme(legend.position = "bottom",
+        legend.direction = "horizontal",
+        plot.title = element_text(size = 15, face = "bold"),
+        plot.title.position = "panel") +
+  labs(title = "Labrador Proportion")
+```
+
+```{r}
+shih <- nyc_dog_license |>
+  group_by(zip_code, breed_rc) |>
+  summarise(count = n(), .groups = "drop") |>
+  group_by(zip_code) |>
+  mutate(total_dogs = sum(count), 
+         prop_shih = ifelse(breed_rc == "Shih Tzu", count/total_dogs, NA)) |>
+  filter(breed_rc == "Shih Tzu") |>
+  select(zip_code, prop_shih)
+
+add_loc <- nyc_zips_coord |>
+  left_join(nyc_zips_df)
+
+shih_plot <- add_loc |>
+  left_join(shih)
+
+ggplot(data = shih_plot,
+       aes(x = X,
+           y = Y,
+           group = zip_code,
+           fill = prop_shih)) +
+  geom_polygon(color = "lightgrey",
+               size = .3) +
+   scale_fill_viridis_c(option = "inferno",
+                       na.value = NA) +
+  theme_void() +
+  theme(legend.position = "bottom",
+        legend.direction = "horizontal",
+        plot.title = element_text(size = 15, face = "bold"),
+        plot.title.position = "panel") +
+  labs(title = "Shih Tzu Proportion")
+```
+
+
+```{r}
+pit_bull <- nyc_dog_license |>
+  group_by(zip_code, breed_rc) |>
+  summarise(count = n(), .groups = "drop") |>
+  group_by(zip_code) |>
+  mutate(total_dogs = sum(count), 
+         prop_pit = ifelse(breed_rc == "Pit Bull (or Mix)", count/total_dogs, NA)) |>
+  filter(breed_rc == "Pit Bull (or Mix)") |>
+  select(zip_code, prop_pit)
+
+add_loc <- nyc_zips_coord |>
+  left_join(nyc_zips_df)
+
+pb_plot <- add_loc |>
+  left_join(pit_bull)
+
+ggplot(data = pb_plot,
+       aes(x = X,
+           y = Y,
+           group = zip_code,
+           fill = prop_pit)) +
+  geom_polygon(color = "lightgrey",
+               size = .3) +
+  scale_fill_viridis_c(option = "inferno",
+                       na.value = NA) +
+  theme_void() +
+  theme(legend.position = "bottom",
+        legend.direction = "horizontal",
+        plot.title = element_text(size = 15, face = "bold"),
+        plot.title.position = "panel") +
+  labs(title = "Pit Bull Proportion")
+```
+
+```{r}
+chi <- nyc_dog_license |>
+  group_by(zip_code, breed_rc) |>
+  summarise(count = n(), .groups = "drop") |>
+  group_by(zip_code) |>
+  mutate(total_dogs = sum(count), 
+         prop_chi = ifelse(breed_rc == "Chihuahua", count/total_dogs, NA)) |>
+  filter(breed_rc == "Chihuahua") |>
+  select(zip_code, prop_chi)
+
+add_loc <- nyc_zips_coord |>
+  left_join(nyc_zips_df)
+
+chi_plot <- add_loc |>
+  left_join(chi)
+
+ggplot(data =chi_plot,
+       aes(x = X,
+           y = Y,
+           group = zip_code,
+           fill = prop_chi)) +
+  geom_polygon(color = "lightgrey",
+               size = .3) +
+   scale_fill_viridis_c(option = "inferno",
+                       na.value = NA) +
+  theme_void() +
+  theme(legend.position = "bottom",
+        legend.direction = "horizontal",
+        plot.title = element_text(size = 15, face = "bold"),
+        plot.title.position = "panel") +
+  labs(title = "Chihuahua Proportion")
+```
+
