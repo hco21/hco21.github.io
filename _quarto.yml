@@ -19,6 +19,9 @@ website:
       - text: Blog
         href: blog-listing.qmd
         
+      - text: DANL 310 Project
+        href: SAMSproject.qmd
+        
     page-footer: 
     center: "Powered with GitHub and Quarto<br>© Hannah Olejniczak, 2025"
 

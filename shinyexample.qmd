@@ -1,0 +1,15 @@
+
+---
+title: "Project with Shiny"
+subtitle: "SUBTITLE"
+date: 2025-05-05
+---
+
+```{=html}
+<div style="text-align: center; margin: 1em 0;">
+  <iframe
+    src="https://0196a1c3-479f-84dc-f5c7-a36372242761.share.connect.posit.cloud/"
+    style="width: 800px; height: 800px; border: none;"
+  ></iframe>
+</div>
+```

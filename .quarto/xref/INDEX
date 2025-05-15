@@ -93,5 +93,8 @@
   },
   "posts/dog-blog/dogblog.qmd": {
     "dogblog.html": "2f4b3a19"
+  },
+  "shinyexample.qmd": {
+    "shinyexample.html": "9f260cb7"
   }
 }
