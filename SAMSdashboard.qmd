@@ -17,6 +17,7 @@ library(plotly)
 ```
 
 ```{r}
+#| include: false
 SAMS <- read_csv("C:/Users/holej/Documents/danl-310-classnotes/SAM_dataset.csv")
 
 
@@ -48,6 +49,7 @@ SAMS <- SAMS |>
 ```
 
 ```{r}
+#| include: false
 emotional_long <- SAMS |>
   select(Adjusted_ID, Athlete_Team, Season, starts_with("emotional_")) |>
   pivot_longer(
