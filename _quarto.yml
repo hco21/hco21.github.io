@@ -20,7 +20,10 @@ website:
         href: blog-listing.qmd
         
       - text: DANL 310 Project
-        href: SAMSproject.qmd
+        href: danl-310-Olejniczak-Hannah-project.qmd
+      
+      - text: Project Dashboard
+        href: SAMSdashboard.qmd
         
     page-footer: 
     center: "Powered with GitHub and Quarto<br>© Hannah Olejniczak, 2025"

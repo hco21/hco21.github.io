@@ -1,0 +1,290 @@
+---
+title: "Student-Athlete Mentoring and Adjustment"
+editor: visual
+format: dashboard
+---
+
+```{r}
+#| include: false
+
+library(tidyverse)
+library(ggthemes)
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(skimr)
+library(plotly)
+```
+
+```{r}
+SAMS <- read_csv("C:/Users/holej/Documents/danl-310-classnotes/SAM_dataset.csv")
+
+
+SAMS <- SAMS |>
+  mutate(Season = case_when(
+    Athlete_Team == "Basketball" ~ "Winter",
+    Athlete_Team == "Equestrian" ~ "Spring",
+    Athlete_Team == "Field Hockey" ~ "Fall",
+    Athlete_Team == "Golf" ~ "Fall",
+    Athlete_Team == "Ice Hockey" ~ "Winter",
+    Athlete_Team == "Lacrosse" ~ "Spring", 
+    Athlete_Team == "Soccer" ~ "Fall",
+    Athlete_Team == "Softball" ~ "Spring",
+    Athlete_Team == "Swimming and Diving" ~ "Winter", 
+    Athlete_Team == "Tennis" ~ "Fall",
+    Athlete_Team == "Track/Cross Country" ~ "All Seasons",
+    Athlete_Team == "Volleyball" ~ "Fall"
+  ))
+
+SAMS <- SAMS |>
+  rowwise() |>
+  mutate(Overall_Adjustment = mean(c_across(c(
+    Emotional_1:Emotional_4,
+    Academic_1:Academic_4,
+    Athletic_1:Athletic_4,
+    Social_1:Social_4
+  )), na.rm = TRUE)) |>
+  ungroup()
+```
+
+```{r}
+emotional_long <- SAMS |>
+  select(Adjusted_ID, Athlete_Team, Season, starts_with("emotional_")) |>
+  pivot_longer(
+    cols = starts_with("emotional_"),
+    names_to = "Week",
+    values_to = "Emotional_Adjustment"
+  ) |>
+  mutate(Week = parse_number(Week),
+         Type = "Emotional") |>
+  rename(Score = Emotional_Adjustment) |>
+  mutate(Type = "Emotional")
+
+athletic_long <- SAMS |>
+  select(Adjusted_ID, Athlete_Team, Season, starts_with("athletic_")) |>
+  pivot_longer(
+    cols = starts_with("athletic_"),
+    names_to = "Week",
+    values_to = "Athletic_Adjustment"
+  ) |>
+  mutate(Week = parse_number(Week),
+         Type = "Athletic")  |>
+  rename(Score = Athletic_Adjustment) |>
+  mutate(Type = "Athletic")
+
+academic_long <- SAMS |>
+  select(Adjusted_ID, Athlete_Team, Season, starts_with("academic_")) |>
+  pivot_longer(
+    cols = starts_with("academic_"),
+    names_to = "Week",
+    values_to = "Academic_Adjustment"
+  ) |>
+  mutate(Week = parse_number(Week),
+         Type = "Academic") |>
+  rename(Score = Academic_Adjustment) |>
+  mutate(Type = "Academic")
+
+social_long <- SAMS |>
+  select(Adjusted_ID, Athlete_Team, Season, starts_with("social_")) |>
+  pivot_longer(
+    cols = starts_with("social_"),
+    names_to = "Week",
+    values_to = "Social_Adjustment"
+  ) |>
+  mutate(Week = parse_number(Week),
+         Type = "Social") |>
+  rename(Score = Social_Adjustment) |>
+  mutate(Type = "Social")
+
+adjustment_long <- bind_rows(
+  emotional_long,
+  academic_long, 
+  athletic_long, 
+  social_long
+)
+
+num_teams <- SAMS |>
+  distinct(Athlete_Team) |>
+  nrow()
+
+num_seasons <- SAMS |>
+  distinct(Season) |>
+  nrow()
+```
+
+# Breakdown
+
+::::: columns
+::: {.column width="50%"}
+```{r}
+#| content: valuebox
+#| title: "Athletes"
+
+list(
+  icon = "person-arms-up",
+  color = "navy",
+  value = 285
+)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| content: valuebox
+#| title: "Athletic Teams"
+
+list(
+  icon = "trophy",
+  color = "navy",
+  value = num_teams
+)
+```
+:::
+:::::
+
+::::: columns
+::: {.column width="50%"}
+```{r}
+#| content: valuebox
+#| title: "Seasons"
+
+list(
+  icon = "grid",
+  color = "navy",
+  value = num_seasons
+)
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| content: valuebox
+#| title: "Institution"
+
+list(
+  icon = "buildings-fill",
+  color = "navy",
+  value = 1
+)
+```
+:::
+:::::
+
+```{r}
+#table <- skim(SAMS[, c("GPA_Fall", "Total_Attendance", "Overall_Adjustment")])
+#as.data.frame(table)
+skim(SAMS)
+```
+
+# Attendance
+
+::::: columns
+::: {.column width="50%"}
+```{r}
+#| title: Total Attendance and GPA
+#| fig-width: 12
+#| fig-height: 10
+
+ggplot(SAMS, 
+       aes(x = Total_Attendance, 
+           y = GPA_Fall)) +
+  geom_point(alpha = 0.6, 
+             color = "purple") +
+  geom_smooth(method = "lm", 
+              se = TRUE, 
+              color = "black") +
+  labs(title = "Total Attendance vs Fall GPA",
+       x = "Total Target Week Attendance",
+       y = "Fall GPA") +
+  theme_minimal() +
+  theme(axis.title.y = element_text(face = 'bold'),
+        axis.title.x = element_text(face = 'bold'),
+        plot.title = element_text(face = 'bold',
+                                  hjust = .5))
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| title: Total Attendance and GPA Faceted by Season
+#| fig-width: 12
+#| fig-height: 10
+ggplot(SAMS, 
+       aes(x = Total_Attendance, 
+           y = GPA_Fall,
+           color = Season)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", 
+              se = FALSE, 
+              color = "black",
+              alpha = .5) +
+  facet_wrap(~Season) +
+  labs(title = "Attendance vs GPA by Season",
+       x = "Total Attendance",
+       y = "Fall GPA") +
+  theme_minimal() +
+  theme(axis.title.y = element_text(face = 'bold'),
+        axis.title.x = element_text(face = 'bold'),
+        plot.title = element_text(face = 'bold',
+                                  hjust = .5),
+        strip.text = element_text(face = 'bold',
+                                  size = 12),
+        legend.position = "top")
+```
+:::
+:::::
+
+# Season Interactive
+
+```{r}
+#| title: Overall Adjustment and Season
+#| fig-width: 10
+#| fig-height: 10
+p <- ggplot(SAMS,
+            aes(x = Season,
+                y = Overall_Adjustment,
+                color = Season,
+                text = paste("ID:", Adjusted_ID,
+                             "Sport:", Athlete_Team))) +
+  geom_boxplot(outlier.shape = NA, alpha = 0.3) +
+  geom_jitter(width = 0.15, alpha = 0.6, size = 2) +
+  labs(title = "Overall Adjustment by Season",
+       y = "Overall Adjustment") +
+  theme_minimal() +
+  theme(plot.title = element_text(face = 'bold',
+                                  hjust = 0.5),
+        axis.title = element_text(face = 'bold'),
+        strip.text = element_text(face = 'bold',
+                                  size = 12))
+  
+
+ggplotly(p, tooltip = "text")
+```
+
+# Season still
+
+```{r}
+#| title: Adjustment over time by season
+#| fig-width: 12
+#| fig-height: 10
+ggplot(adjustment_long, 
+       aes(x = Week, 
+           y = Score, 
+           color = Season)) +
+  stat_summary(fun = mean, 
+               geom = "line", 
+               linewidth = 1.2) +
+  stat_summary(fun = mean, 
+               geom = "point", 
+               size = 2) +
+  facet_wrap(~Type) +
+  labs(title = "Adjustment Over Time by Season",
+       x = "Target Week",
+       y = "Mean Score") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5,
+                                  face = 'bold'),
+        axis.title = element_text(face = 'bold'),
+        strip.text = element_text(face = 'bold',
+                                  size = 12))
+```
